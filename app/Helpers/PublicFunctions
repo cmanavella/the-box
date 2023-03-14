@@ -1,0 +1,12 @@
+<?php
+namespace App\Helpers;
+
+class PublicFunctions{
+    if (! function_exists('calculateTotal')){
+        public function calculateTotal(){
+            $total = 0;
+
+            return $total;
+        }
+    }
+}

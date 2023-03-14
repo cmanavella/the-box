@@ -9,7 +9,7 @@
       <div class="card">
         <h5 class="card-header">{{$account->nombre}}</h5>
         <div class="card-body">
-          <h4 class="card-title">{{$account->account_type->simbolo}}2000</h4>
+          <h4 class="card-title">{{$account->account_type->simbolo}}{{$account->total}}</h4>
           <p class="card-text"><strong>Tipo de cuenta:</strong> {{$account->account_type->nombre}}</p>
         </div>
       </div>
