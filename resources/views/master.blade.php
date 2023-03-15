@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="{{ URL::asset('css/estilos.css') }}" />
 
         <script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+        <script src="https://kit.fontawesome.com/d2bde4eca0.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/jquery-3.6.4.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/functions.js') }}"></script>
 
         <title>The Box</title>
     </head>

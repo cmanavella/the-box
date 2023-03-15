@@ -1,3 +1,75 @@
-h1{
-    color: red;
+body{
+    background-color: #fffcfc;
+}
+
+.card-header{
+    background-color: #49608f;
+    color: white;
+}
+.card-header p{
+    font-size: 12px;
+}
+
+.card-header .left{
+    float: left;
+    width: 48%;
+    margin-bottom: 0;
+}
+
+.card-header .right{
+    float: right;
+    width: 48%;
+    text-align: right;
+    margin-bottom: 0;
+}
+
+.card-body{
+    display: inline-block;
+    text-align: center;
+    background-color: #f5f6f7;
+}
+
+.moneda{
+    color: grey;
+    font-size: 20px;
+}
+
+.boton{
+    display: inline-block;
+    cursor: pointer;
+    border: #6683bd 1px solid;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+
+.boton:hover{
+    background-color: #e3e6e8;
+}
+
+div.botones_container{
+    margin-top: 7px;
+    text-align: center;
+    font-size: 30px;
+    color: #6683bd;
+}
+
+div.botones_container p{
+    font-size: 12px;
+    color: #6683bd;
+}
+
+[id^='info_button_']{
+    color: #49608f;
+    border-color: #49608f;
+}
+
+[id^='info_button_'] p{
+    color: #49608f;
+}
+
+div.detalle{
+    float: left;
+    width: 100%;
+    display: none;
 }
