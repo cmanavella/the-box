@@ -48,11 +48,12 @@
                   <th scope="col">Tipo</th>
                   <th scope="col">Haberes</th>
                   <th scope="col">Débitos</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($account->details as $detail )
-                  <tr id="detalle_{{$detail->id}}">
+                  <tr>
                     <td>{{ date("d/m/Y", strtotime($detail->fecha)) }}</td>
                     <td>{{ $detail->detail_account_type->nombre }}</td>
 
@@ -69,10 +70,14 @@
                     <!--Si el detalle tiene comentario, lo cargo en un div oculto.-->
 
                     @if (!is_null($detail->comments))
+                        <td id="detalle_{{$detail->id}}"><i class="fa-solid fa-circle-info"></i></td>
+
                         <tr style="display = none;"></tr>
                         <tr id="detail_comment_{{$detail->id}}">
-                          <td colspan="4">{{$detail->comments}}</td>
+                          <td colspan="5">{{$detail->comments}}</td>
                         </tr>
+                    @else
+                        <td> </td>
                     @endif
                   </tr>
                 @endforeach

@@ -84,6 +84,11 @@ div.detalle{
 
 [id^='detalle_']{
     cursor: pointer;
+    color: #6683bd !important;
+}
+
+[id^='detalle_account_']{
+    cursor: default;
 }
 
 [id^='detail_comment_']{
