@@ -16,43 +16,71 @@
           </div>
 
           <div class="botones_container">
-            <span class="boton shadow">
-              <i class="fa-sharp fa-solid fa-money-bill-1-wave" title="Retirar dinero"></i>
+            <span class="boton shadow" title="Retirar dinero">
+              <i class="fa-sharp fa-solid fa-money-bill-1-wave"></i>
               <p>Retirar</p>
             </span>
-            <span class="boton shadow">
-              <i class="fa-sharp fa-solid fa-wallet" title="Ingresar dinero"></i>
+            <span class="boton shadow" title="Ingresar dinero">
+              <i class="fa-sharp fa-solid fa-wallet"></i>
               <p>Ingresar</p>
             </span>
-            <span id="info_button_{{$account->id}}" class="boton shadow">
-              <i class="fa-solid fa-money-bill-transfer" title="Detalles"></i>
+            <span id="info_button_{{$account->id}}" class="boton shadow" title="Detalles">
+              <i class="fa-solid fa-money-bill-transfer"></i>
               <p>Detalles</p>
+            </span>
+            <span class="boton shadow" title="Prestar dinero">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+              <p>Prestar</p>
+            </span>
+            <span class="boton shadow" title="Regresar dinero prestado">
+              <i class="fa-solid fa-receipt"></i>
+              <p>Regresar</p>
             </span>
           </div>
 
           <div id= "detalle_account_{{$account->id}}" class="detalle">
-            <table>
-              <tr>
-                <th>Columna1</th>
-                <th>Columna2</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>2</td>
-              </tr>
+            <!--Compruebo que la cuenta tenga movimientos-->
+            @if ($account->details->count() > 0)
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Haberes</th>
+                  <th scope="col">Débitos</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($account->details as $detail )
+                  <tr id="detalle_{{$detail->id}}">
+                    <td>{{ date("d/m/Y", strtotime($detail->fecha)) }}</td>
+                    <td>{{ $detail->detail_account_type->nombre }}</td>
+
+                    <!--En base a si es debito o no, imprimo el monto en la columna correspondiente
+                      mientras la otra la dejo vacia.-->
+                    @if ($detail->detail_account_type->is_debit)
+                      <td></td>
+                      <td class="debito">-{{ $account->account_type->simbolo }}{{ number_format($detail->monto, 2, ',', '.') }}</td>
+                    @else
+                      <td>{{ $account->account_type->simbolo }}{{ number_format($detail->monto, 2, ',', '.') }}</td>
+                      <td></td>
+                    @endif
+
+                    <!--Si el detalle tiene comentario, lo cargo en un div oculto.-->
+
+                    @if (!is_null($detail->comments))
+                        <tr style="display = none;"></tr>
+                        <tr id="detail_comment_{{$detail->id}}">
+                          <td colspan="4">{{$detail->comments}}</td>
+                        </tr>
+                    @endif
+                  </tr>
+                @endforeach
+              </tbody>
             </table>
+            @else
+                <p>No se registran movimientos en la cuenta.</p>
+            @endif
           </div>
         </div>
       </div>

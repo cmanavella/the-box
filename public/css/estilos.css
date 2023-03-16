@@ -37,10 +37,10 @@ body{
 .boton{
     display: inline-block;
     cursor: pointer;
-    border: #6683bd 1px solid;
+    border: #6683bd 2px solid;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
+    width: 72px;
+    height: 72px;
 }
 
 .boton:hover{
@@ -55,13 +55,16 @@ div.botones_container{
 }
 
 div.botones_container p{
-    font-size: 12px;
+    font-size: 11px;
     color: #6683bd;
 }
 
 [id^='info_button_']{
     color: #49608f;
     border-color: #49608f;
+    width: 75px;
+    height: 75px;
+    font-size: 33px;
 }
 
 [id^='info_button_'] p{
@@ -69,7 +72,49 @@ div.botones_container p{
 }
 
 div.detalle{
-    float: left;
+    margin-top: 16px;
     width: 100%;
     display: none;
+    text-align: center;
+}
+
+.debito{
+    color: #b30000 !important;
+}
+
+[id^='detalle_']{
+    cursor: pointer;
+}
+
+[id^='detail_comment_']{
+    display: none;
+    cursor: default;
+}
+
+
+/*Apartado que controla las pantallas
+de celulares*/
+@media only screen and (max-width: 767px) {
+    div.botones_container{
+        font-size: 25px;
+    }
+
+    div.botones_container p{
+        font-size: 9px;
+    }
+
+    .boton{
+        width: 65px;
+        height: 65px;
+    }
+
+    [id^='info_button_']{
+        width: 67px;
+        height: 67px;
+        font-size: 27px;
+    }
+
+    table{
+        font-size: 10px;
+    }
 }
