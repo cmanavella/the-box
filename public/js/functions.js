@@ -7,7 +7,7 @@ $( document ).ready(function() {
     $("[id^='info_button_']").click(function () {
         //Capturo el evento clic de los botones info_button y
         //extraigo de su id el id de cuenta
-        var id_account = $(this).attr('id').match(/[\d]/);
+        var id_account = $(this).attr('id').replace('info_button_', '');
 
         //Muestro el detalle de la cuenta en base al id.
         $("#detalle_account_" + id_account).toggle(500);
@@ -18,7 +18,7 @@ $( document ).ready(function() {
     */
     $("[id^='detalle_']").click(function () {
         //Obtengo el id del detalle que se encuentra embebido en el id al cual hice clic.
-        var id_detalle = $(this).attr('id').match(/[\d]/);
+        var id_detalle = $(this).attr('id').replace('detalle_', '');
 
         //Uso la bandera antes de aplicar el Toggle ya que por alguna razon se hace un doble clic
         //que muestra y luego esconde el elemento que pretendo mostrar.
