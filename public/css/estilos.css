@@ -2,6 +2,20 @@ body{
     background-color: #fffcfc;
 }
 
+input {
+    border-top-style: hidden !important;
+    border-right-style: hidden !important;
+    border-left-style: hidden !important;
+    border-bottom: gray 2px solid  !important;
+    background-color: #f5f6f7 !important;
+  }
+
+input:focus{
+    background-color: #f5f6f7 !important;
+    border-color: #6683bd !important;
+    box-shadow: 0 4px 2px -2px #6683bd !important;
+  }
+
 .card-header{
     background-color: #49608f;
     color: white;
@@ -29,7 +43,7 @@ body{
     background-color: #f5f6f7;
 }
 
-.moneda{
+.small-gray{
     color: grey;
     font-size: 20px;
 }
@@ -76,6 +90,9 @@ div.detalle{
     width: 100%;
     display: none;
     text-align: center;
+    overflow: hidden;
+    max-height: 360px;
+    overflow-y: scroll;
 }
 
 .debito{
@@ -87,13 +104,46 @@ div.detalle{
     color: #6683bd !important;
 }
 
-[id^='detalle_account_']{
-    cursor: default;
+.hidden{
+    display: none;
 }
 
-[id^='detail_comment_']{
+/*Filtro*/
+div.filtro{
+    border: #6683bd 2px solid;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 16px 16px 16px 0;
+
+}
+
+div.filtro h1,
+div.filtro h2,
+div.filtro h3,
+div.filtro h4,
+div.filtro h5,
+div.filtro h6{
+    text-align: left;
+    color: #49608f;
+    margin: 8px;
+}
+
+.tr_hidden{
     display: none;
-    cursor: default;
+}
+
+.clear_input_button{
+    background-color: #49608f;
+}
+
+.clear_input_button:hover{
+    background-color: #6683bd;
+}
+
+.input_icon{
+    background-color: #49608f;
+    color: white;
 }
 
 

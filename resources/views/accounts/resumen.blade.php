@@ -12,7 +12,7 @@
         </div>
         <div class="card-body">
           <div class="info-resumida">
-            <h2><span class="moneda">{{$account->account_type->simbolo}}</span>{{number_format($account->total, 2, ',', '.')}}</h2>
+            <h2><span class="small-gray">{{$account->account_type->simbolo}}</span>{{number_format($account->total, 2, ',', '.')}}</h2>
           </div>
 
           <div class="botones_container">
@@ -38,10 +38,30 @@
             </span>
           </div>
 
-          <div id= "detalle_account_{{$account->id}}" class="detalle">
+          <div id= "detail_account_{{$account->id}}" class="detalle">
             <!--Compruebo que la cuenta tenga movimientos-->
             @if ($account->details->count() > 0)
-            <table class="table table-striped">
+
+            <!--Filtro-->
+            <div class="filtro">
+                <h6>Filtro</h6>
+                <form onsubmit="return false;">
+                    <div class="form-row">
+                        <div class="input-group mb-2">
+                            <div class="input-group-text input_icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                            <input type="text" class="form-control no-outline"
+                                id="account_input_filter_{{$account->id}}"
+                                placeholder="Buscar. Por ej: 'Ingresos' o '12/2022'" />
+                            <button id="clear_account_filter_button_{{$account->id}}" class="btn btn-primary clear_input_button">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--Tabla de detalles-->
+            <table id="account_table_{{$account->id}}" class="table table-striped table-responsive">
               <thead>
                 <tr>
                   <th scope="col">Fecha</th>
@@ -53,7 +73,7 @@
               </thead>
               <tbody>
                 @foreach ($account->details as $detail )
-                  <tr>
+                  <tr class="tr_visible">
                     <td>{{ date("d/m/Y", strtotime($detail->fecha)) }}</td>
                     <td>{{ $detail->detail_account_type->nombre }}</td>
 
@@ -72,8 +92,8 @@
                     @if (!is_null($detail->comments))
                         <td id="detalle_{{$detail->id}}"><i class="fa-solid fa-circle-info"></i></td>
 
-                        <tr style="display = none;"></tr>
-                        <tr id="detail_comment_{{$detail->id}}">
+                        <tr class="tr_hidden"></tr>
+                        <tr id="detail_comment_{{$detail->id}}" class="hidden">
                           <td colspan="5">{{$detail->comments}}</td>
                         </tr>
                     @else
