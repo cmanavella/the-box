@@ -12,17 +12,20 @@
         </div>
         <div class="card-body">
           <div class="info-resumida">
-            <h2><span class="small-gray">{{$account->account_type->simbolo}}</span>{{number_format($account->total, 2, ',', '.')}}</h2>
+            <span class="d-inline small-gray">{{$account->account_type->simbolo}}</span>
+            <h2 class="d-inline">{{number_format($account->total, 2, ',', '.')}}</h2>
           </div>
 
           <div class="botones_container">
+            <span class="boton shadow" title="Ingresar dinero"
+            data-toggle="modal" data-target="#ingresarDineroModal"
+            data-backdrop="static" data-account-id = "{{ $account->id }}">
+                <i class="fa-sharp fa-solid fa-wallet"></i>
+                <p>Ingresar</p>
+              </span>
             <span class="boton shadow" title="Retirar dinero">
               <i class="fa-sharp fa-solid fa-money-bill-1-wave"></i>
               <p>Retirar</p>
-            </span>
-            <span class="boton shadow" title="Ingresar dinero">
-              <i class="fa-sharp fa-solid fa-wallet"></i>
-              <p>Ingresar</p>
             </span>
             <span id="info_button_{{$account->id}}" class="boton shadow" title="Detalles">
               <i class="fa-solid fa-money-bill-transfer"></i>
@@ -115,5 +118,73 @@
         <hr/>
     @endif
 
+    <!-- Modal -->
+    <div class="modal fade" id="ingresarDineroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLongTitle">Ingresar Dinero</h6>
+                </div>
+                <input type="hidden" name="id-account" id="id-account">
+                <div class="modal-body">
+                    <div class="text-center" style="margin-bottom: 16px;">
+                        <span id="money-symbol" class="d-inline small-gray"></span>
+                        <h3 id="account-total" class="d-inline"></h3>
+                    </div>
+                    <div class="input-group mb-2 row">
+                        <span style="font-weight: bold;" class="col-sm-5">Nombre de la cuenta:</span>
+                        <span id="account-name" class="col-sm-5"></span>
+                    </div>
+                    <div class="input-group mb-2 row">
+                        <span style="font-weight: bold;" class="col-sm-5">Tipo de cuenta:</span>
+                        <span id="account-type" class="col-sm-5"></span>
+                    </div>
+                    <hr />
+                    <form onsubmit="return false;">
+                        <div id="error-panel" class="errores">
+                            <ul id="error-list">
 
+                            </ul>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group mb-2">
+                                <div class="input-group-text input_icon">
+                                    <i class="fa-regular fa-calendar"></i>
+                                </div>
+                                <div class="col-sm-4" style="margin-right: 8px;">
+                                    <input type="date" class="form-control no-outline"
+                                        id="account-date" name = "account-date"
+                                        placeholder="dd/mm/aaaa" />
+
+                                </div>
+                                <div class="input-group-text input_icon">
+                                    <span id="account-money-symbol"></span>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="number" class="form-control no-outline"
+                                        id="monto" name = "monto"
+                                        placeholder="1000,00" min="0" step="any"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control no-outline"
+                                        id="observaciones" name = "observaciones"
+                                        placeholder="Observaciones (opcional)" />
+                            </div>
+                        </div>
+
+                        <a id="add-movimiento" class="flat-button" title="Agregar otro..." onclick="agregar_movimiento()">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clear_errores()">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

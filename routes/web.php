@@ -15,3 +15,4 @@ use App\Http\Controllers\AccountsController;
 */
 
 Route::get('/', [AccountsController::class, 'index']);
+Route::get('/accounts/{id}', [AccountsController::class, 'show'])->name('accounts-get');
