@@ -202,6 +202,31 @@ div.modal-body, div.modal-footer{
     background-color: #f5f6f7;
 }
 
+#tabla-movimientos{
+    display: none;
+}
+
+.th-fecha{
+    width: 100px;
+}
+
+.th-monto{
+    width: 140px;
+}
+
+.th-icon{
+    width: 20px;
+}
+
+.td-icon{
+    cursor: pointer;
+    color: #49608f;
+}
+
+.td-icon:hover{
+    color: #6683bd;
+}
+
 /*Apartado que controla las pantallas
 de celulares*/
 @media only screen and (max-width: 767px) {

@@ -163,7 +163,7 @@
                                 <div class="col-auto">
                                     <input type="number" class="form-control no-outline"
                                         id="monto" name = "monto"
-                                        placeholder="1000,00" min="0" step="any"/>
+                                        placeholder="1.000,00" min="0" step="any"/>
                                 </div>
                             </div>
                         </div>
@@ -179,9 +179,21 @@
                             <i class="fa-solid fa-plus"></i>
                         </a>
                     </form>
+
+                    <table id="tabla-movimientos" class="table table-sm table-fixed">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="th-fecha">Fecha</th>
+                                <th scope="col" class="th-monto">Monto</th>
+                                <th scope="col" class="th-observaciones">Observaciones</th>
+                                <th scope="col" class="th-icon"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clear_errores()">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close_modal()">Cancelar</button>
                 <button type="button" class="btn btn-primary">Guardar</button>
                 </div>
             </div>

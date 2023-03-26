@@ -90,3 +90,25 @@ function close_comments(id_account){
         }
     }
 }
+
+/*
+Funcion que permite dar formato a un numero, de manera que se muestre como dinero.
+*/
+function format_money(value){
+    let formatting_options = {
+        style: 'decimal',
+        minimumFractionDigits: 2,
+    }
+    let formatter = new Intl.NumberFormat("es-AR", formatting_options);
+
+    return formatter.format(value);
+}
+
+/*
+Funcion que convierte una fecha en String de aaaa-mm-dd a dd/mm/aaaa
+*/
+function format_date_to_show(strDate){
+    let splDate = strDate.split('-');
+
+    return splDate[2] + "/" + splDate[1] + "/" + splDate[0];
+}
