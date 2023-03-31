@@ -123,7 +123,7 @@ function clear_errores(){
 /*
 Funcion que se ejecuta al cerrar el modal
 */
-function close_modal(){
+function on_close_modal(){
     //Limpio el panel de errores.
     clear_errores();
 
@@ -134,4 +134,67 @@ function close_modal(){
 
     //Oculto la tabla movimientos.
     tabla.style.display = 'none';
+
+    //Limpio los campos del Form.
+    document.getElementById('account-date').value = "";
+    document.getElementById('monto').value = "";
+    document.getElementById('observaciones').value = "";
+}
+
+/*
+Funcion que guarda el o los movimientos del modal que lo llamo
+*/
+function guardar_movimientos(){
+    //Primero debo determinar si la tabla movimientos se encuentra
+    //visible o no. Esto significa que al estar visible debo guardar
+    //los elementos dentro de la tabla, si no lo esta solo debo guardar
+    //lo que hay en el form.
+    let tabla = document.getElementById('tabla-movimientos');
+
+    if(tabla.style.display == "" || tabla.style.display == "none"){
+         //Si no esta visible debo guardar solo los campos del form.
+        //Antes debo validar.
+        if(validar_movimiento()){
+            //Cargo los campos en constantes.
+            let id_account = document.getElementById('id-account').value;
+            let id_detail_type = 1;
+            let fecha = document.getElementById('account-date').value;
+            let monto = document.getElementById('monto').value;
+            let observaciones = document.getElementById('observaciones').value;
+
+            //Cargo la URL del controlador que la tengo almacenada en el
+            //boton que llama a esta funcion.
+            let url_guardado = $('#ingresar-dinero').data('url-guardado');
+
+            //Cargo la URL de redireccion a la Main Page.
+            let url_main = $('#ingresar-dinero').data('url-main');
+
+            //Cargo el token de seguridad almacenado.
+            let token = $('meta[name="csrf-token"]').attr('content');
+
+            //Ejecuto la funcion del controlador mediante AJAX.
+            $.ajax({
+                type: 'POST',
+                url: url_guardado,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                data: {
+                    id_account: id_account,
+                    id_detail_type: id_detail_type,
+                    fecha: fecha,
+                    monto: monto,
+                    observaciones: observaciones},
+                success: function(data){
+                    alert('Datos guardados con éxito.');
+
+                    //Redirecciono a la Main Page.
+                    window.location.replace(url_main);
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert(errorThrown);
+                }
+            });
+        }
+    }
 }

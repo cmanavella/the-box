@@ -52,7 +52,7 @@
                     <div class="form-row">
                         <div class="input-group mb-2">
                             <div class="input-group-text input_icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                            <input type="text" class="form-control no-outline"
+                            <input type="text" class="form-control"
                                 id="account_input_filter_{{$account->id}}"
                                 placeholder="Buscar. Por ej: 'Ingresos' o '12/2022'" />
                             <button id="clear_account_filter_button_{{$account->id}}" class="btn btn-primary clear_input_button">
@@ -146,13 +146,14 @@
 
                             </ul>
                         </div>
+
                         <div class="form-row">
                             <div class="input-group mb-2">
                                 <div class="input-group-text input_icon">
                                     <i class="fa-regular fa-calendar"></i>
                                 </div>
-                                <div class="col-sm-4" style="margin-right: 8px;">
-                                    <input type="date" class="form-control no-outline"
+                                <div class="col-sm-4" style="margin-right: 4px;">
+                                    <input type="date" class="form-control"
                                         id="account-date" name = "account-date"
                                         placeholder="dd/mm/aaaa" />
 
@@ -161,7 +162,7 @@
                                     <span id="account-money-symbol"></span>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="number" class="form-control no-outline"
+                                    <input type="number" class="form-control"
                                         id="monto" name = "monto"
                                         placeholder="1.000,00" min="0" step="any"/>
                                 </div>
@@ -169,7 +170,7 @@
                         </div>
                         <div class="form-row">
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control no-outline"
+                                <input type="text" class="form-control"
                                         id="observaciones" name = "observaciones"
                                         placeholder="Observaciones (opcional)" />
                             </div>
@@ -193,8 +194,15 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close_modal()">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="on_close_modal()">Cancelar</button>
+                <button type="button" id="ingresar-dinero" class="btn btn-primary"
+                    data-url-guardado="{{ route('detailsaccount.add_movimiento',
+                    ['id_account' => 0,
+                    'id_detail_type' => 0,
+                    'fecha' => '0001-01-01',
+                    'monto' => 0]) }}"
+                    data-url-main="{{ route('main') }}"
+                    onclick="guardar_movimientos()">Guardar</button>
                 </div>
             </div>
         </div>

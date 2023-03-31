@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\DetailsAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,8 @@ use App\Http\Controllers\AccountsController;
 |
 */
 
-Route::get('/', [AccountsController::class, 'index']);
-Route::get('/accounts/{id}', [AccountsController::class, 'show'])->name('accounts-get');
+Route::get('/', [AccountsController::class, 'index'])->name('main');
+Route::get('/accounts/{id}', [AccountsController::class, 'show'])->name('accounts.get');
+
+Route::post('/detailsaccount/{id_account}/{id_detail_type}/{fecha}/{monto}/{observaciones?}',
+    [DetailsAccountController::class, 'ajax_add_movimiento'])->name('detailsaccount.add_movimiento');
